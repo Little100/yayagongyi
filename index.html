@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吖吖公益 - 烈焰弹客户端</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .disclaimer {
+            background-color: #ff5555;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff3e3e;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ff3e3e;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ff3e3e;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff3e3e;
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #e62e2e;
+        }
+        
+        .features {
+            padding: 100px 0;
+            background-color: #151515;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #ff3e3e;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #ff3e3e;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .pricing {
+            padding: 100px 0;
+            background-color: #0f0f0f;
+        }
+        
+        .price-card {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .price {
+            font-size: 48px;
+            margin: 20px 0;
+            color: #ff3e3e;
+        }
+        
+        .price-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .price-card li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #252525;
+            border-radius: 5px;
+        }
+        
+        footer {
+            background-color: #0a0a0a;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-text {
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .social-links li {
+            margin: 0 15px;
+        }
+        
+        .social-links a {
+            color: #ffffff;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #ff3e3e;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="disclaimer">
+        吖吖公益，所向无敌。
+    </div>
+    
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">吖吖公益</a>
+                <ul class="nav-links">
+                    <li><a href="#features">功能</a></li>
+                    <li><a href="#pricing">价格</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>烈焰弹客户端</h1>
+            <p>革命性的游戏体验增强工具，让你的游戏优势提升到新高度，让其他玩家望而止步</p>
+            <a href="#pricing" class="btn pulse">立即获取</a>
+        </div>
+    </section>
+    
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">强大功能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Auto闪电肘</h3>
+                    <p>使您在游戏中获取比其他玩家更大的优势。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚁</div>
+                    <h3>Auto直升机</h3>
+                    <p>一键启动直升机模式，让您在布吉岛中所向披靡。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Auto三折叠</h3>
+                    <p>独家三折叠技术，敌人永远摸不着头脑。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">超值价格</h2>
+            <div class="price-card">
+                <h3>终身版</h3>
+                <div class="price">¥138</div>
+                <p>一次付费，终身使用</p>
+                <ul>
+                    <li>Auto闪电肘</li>
+                    <li>Auto直升机</li>
+                    <li>Auto三折叠</li>
+                    <li>24/7技术支持</li>
+                    <li>自动更新</li>
+                </ul>
+                <button class="btn" onclick="window.location.href='https://www.bilibili.com/video/BV1GJ411x7h7'">立即购买</button>
+                <p style="margin-top: 20px; font-size: 14px; color: #aaa;">
+                    (Get YaYa, Get the top)
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features" id="faq">
+        <div class="container">
+            <h2 class="section-title">常见问题</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>这是真的作弊软件吗？</h3>
+                    <p>是的。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>为什么要制作这个页面？</h3>
+                    <p>因为吖吖公益，所向披靡。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>我可以分享这个页面吗？</h3>
+                    <p>当然可以。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-text">
+                <p>吖吖公益 © 2025</p>
+            </div>
+            <ul class="social-links">
+                <li><a href="https://www.bilibili.com/video/BV1GJ411x7h7">QQ</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        document.querySelector('.price-card .btn').addEventListener('click', function() {
+            alert('Never Gonna Give You Up！');
+        });
+    </script>
+</body>
+</html>
